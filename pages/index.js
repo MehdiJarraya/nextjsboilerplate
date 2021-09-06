@@ -1,3 +1,4 @@
+import Layout from "../components/layout/Layout"
 import MeetupList from "../components/meetups/MeetupList"
 
 
@@ -6,21 +7,21 @@ const meetups = [
     id: 1,
     title: "meetup 1",
     image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    addresse: " ariana 1",
+    address: " ariana 1",
     description: "description 1"
   },
   {
     id: 2,
     title: "meetup 2",
     image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    addresse: " ariana 2",
+    address: " ariana 2",
     description: "description 2"
   },
   {
     id: 3,
     title: "meetup 3",
     image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-    addresse: " ariana 3",
+    address: " ariana 3",
     description: "description 3"
   },
 ]
@@ -28,7 +29,9 @@ const meetups = [
 export default function Home() {
   return (
     <>
-      <MeetupList meetups={meetups} />
+      <Layout>
+        <MeetupList meetups={meetups} />
+      </Layout>
     </>
   )
 }
