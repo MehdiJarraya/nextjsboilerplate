@@ -50,14 +50,14 @@ return {
 // this code will be executed in server!!
 // more secure usefull for authentification and data that changes frequencly
 // slower than getStaticProps
-export async function getServerSideProps(context) {
-  //  access to request and response ;)
-  const req= context.req
-  const res=context.res
-  return {
-    props: {
-      meetups: staticData
-    },
-  }
+// export async function getServerSideProps(context) {
+//   //  access to request and response ;)
+//   const req= context.req
+//   const res=context.res
+//   return {
+//     props: {
+//       meetups: staticData
+//     },
+//   }
 
-}
+// }
