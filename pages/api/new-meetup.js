@@ -1,5 +1,7 @@
 //URL is =>  /api/new-meetup
 
+// we can define api logic here and in pages to prevent usless api call :)
+
 import {MongoClient} from 'mongodb'
 
 

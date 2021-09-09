@@ -1,0 +1,1 @@
+// we can define api logic here and in pages to prevent usless api call :)
