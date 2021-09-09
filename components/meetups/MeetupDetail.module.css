@@ -1,0 +1,14 @@
+/* module.css extension is important for =>
+To unlock css module feature => allows scoope(expose) css class to a specefic react component
+
+behind the scene => transform css classes => unique classname per component 
+
+
+*/
+
+.detail {
+    text-align: center;
+}
+ .detail img{
+    width: 100%;
+ }
