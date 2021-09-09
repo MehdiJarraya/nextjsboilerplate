@@ -2,7 +2,7 @@
 import MeetupList from "../components/meetups/MeetupList"
 
 
-const meetups = [
+const staticData = [
   {
     id: 1,
     title: "meetup 1",
@@ -26,10 +26,38 @@ const meetups = [
   },
 ]
 
-export default function Home() {
+export default function Home({ meetups }) {
+
   return (
 
-        <MeetupList meetups={meetups} />
+    <MeetupList meetups={meetups} />
 
   )
+}
+
+// getStaticPropos pedefined method that return an obj => can be used only in next.js pages 
+export async function getStaticProps(){
+return {
+  props:{
+    meetups:staticData
+  },
+  // revalidate each 10 seconds
+  revalidate: 10
+}}
+
+//  will not run in the build process BUT it will run in server!! after request
+// not like useEffect that's run on client and miss item html (bad for seo)
+// this code will be executed in server!!
+// more secure usefull for authentification and data that changes frequencly
+// slower than getStaticProps
+export async function getServerSideProps(context) {
+  //  access to request and response ;)
+  const req= context.req
+  const res=context.res
+  return {
+    props: {
+      meetups: staticData
+    },
+  }
+
 }
