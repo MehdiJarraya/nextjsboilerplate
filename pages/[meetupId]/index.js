@@ -1,6 +1,6 @@
 
 import MeetupDetailsComponent from "../../components/meetups/MeetupDetail"
-import {MongoClient} from "mongodb"
+import { MongoClient, ObjectId } from "mongodb"
 
 export default function MeetupDetails({ meetupData }) {
     return (
@@ -40,26 +40,31 @@ export async function getStaticPaths() {
         //             meetupId: 'm2'
         //         }
         //     },
-        //     {
-        //         params: {
-        //             meetupId: 'm3'
-        //         }
-        //     }
         // ]
     }
 
 }
 
 export async function getStaticProps(context) {
+
     const meetupId = context.params.meetupId
+    const client = await MongoClient.connect("mongodb+srv://mehdi:0000@cluster0.hqkwb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    const db = client.db()
+    const meetupsCollection = db.collection('meetups')
+    // find first argument for filter createra sooo => {} will fetch all element
+    // find second argument for field  
+    const selectedMeetup = await meetupsCollection.findOne({ _id: ObjectId(meetupId) })
+    console.log("selectedMeetup", selectedMeetup)
+
     return {
         props: {
+            // we must do this bellow otherwise we will get Error serializing `.meetupData._id` 
             meetupData: {
-                id: meetupId,
-                image: "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
-                title: "first meetup yeaaaaaa",
-                address: "chotrana 1 ariana",
-                description: "Bloublba blablalb description"
+                id: selectedMeetup._id.toString(),
+                title: selectedMeetup.title,
+                description: selectedMeetup.description,
+                image: selectedMeetup.image,
+                address: selectedMeetup.address,
             }
         }
 
