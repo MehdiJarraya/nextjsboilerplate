@@ -1,4 +1,4 @@
-
+import Head from "next/head"
 import MeetupList from "../components/meetups/MeetupList"
 import { MongoClient } from "mongodb"
 // When using a package only in getStaticProps/getServerPropos
@@ -12,8 +12,12 @@ export default function Home({ meetups, backendMeetup }) {
 
   return (
 <>
-{  JSON.stringify(meetups)}
-{JSON.stringify(JSON.parse(backendMeetup))}
+<Head>
+  <title> Next.js tutorial</title>
+  <meta name="description" content="This is description for google search engine"></meta>
+</Head>
+{/* {  JSON.stringify(meetups)}
+{JSON.stringify(JSON.parse(backendMeetup))} */}
 <MeetupList meetups={meetups} />
 </>
     

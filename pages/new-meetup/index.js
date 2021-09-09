@@ -1,9 +1,10 @@
 import { useRouter } from 'next/dist/client/router';
+import Head from "next/head"
 import React from 'react'
 import NewMeetupForm from "../../components/meetups/NewMeetupForm"
 
 export default function NewMeetup() {
-    const router=useRouter()
+    const router = useRouter()
     async function addMeetup(newMeetupData) {
         console.log("newMeetupData", newMeetupData);
         const response = await fetch('/api/new-meetup', {
@@ -19,6 +20,12 @@ export default function NewMeetup() {
 
     }
     return (
-        <NewMeetupForm onAddMeetup={addMeetup} />
+        <>
+            <Head>
+                <title> Add an ew meetup </title>
+                <meta name="description" content="Add your own meetups and creaate amazing networking"></meta>
+            </Head>
+            <NewMeetupForm onAddMeetup={addMeetup} />
+        </>
     )
 }
