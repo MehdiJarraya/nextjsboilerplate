@@ -6,6 +6,8 @@ import { MongoClient } from "mongodb"
 // good for bundle size and for security ;)
 
 
+// import {connectToDb} from "../utils"
+
 
 export default function Home({ meetups, backendMeetup }) {
 
@@ -28,7 +30,8 @@ export default function Home({ meetups, backendMeetup }) {
 // getStaticPropos pedefined method that return an obj => can be used only in next.js pages 
 export async function getStaticProps() {
 
-  const client = await MongoClient.connect("mongodb+srv://mehdi:0000@cluster0.hqkwb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+  // const {db}= await connectToDb()
+  const client = await MongoClient.connect(process.env.MONGODB_URI)
   const db = client.db()
   const meetupsCollection = db.collection('meetups')
   const meetups = await meetupsCollection.find().toArray()

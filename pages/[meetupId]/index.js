@@ -16,7 +16,7 @@ export default function MeetupDetails({ meetupData }) {
 }
 
 export async function getStaticPaths() {
-    const client = await MongoClient.connect("mongodb+srv://mehdi:0000@cluster0.hqkwb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    const client = await MongoClient.connect(process.env.MONGODB_URI)
     const db = client.db()
     const meetupsCollection = db.collection('meetups')
     // find first argument for filter createra sooo => {} will fetch all element
@@ -55,7 +55,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
 
     const meetupId = context.params.meetupId
-    const client = await MongoClient.connect("mongodb+srv://mehdi:0000@cluster0.hqkwb.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+    const client = await MongoClient.connect(process.env.MONGODB_URI)
     const db = client.db()
     const meetupsCollection = db.collection('meetups')
     // find first argument for filter createra sooo => {} will fetch all element
