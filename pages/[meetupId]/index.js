@@ -26,10 +26,12 @@ export async function getStaticPaths() {
     client.close()
 
     return {
-        fallback: false,
+        // fallback: false,
         //=> paths contains all the id and if user type inexistinting id => redirect to 404
         // fallback: true,
         // => next will try generate page for this inexistinting id from server while request
+        fallback: 'blocking',
+        // better then true because it blocks the user until the page get fully rendered from server
 
         paths: meetups.map(item => ({
             params: {
